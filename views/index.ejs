@@ -6,15 +6,15 @@
   <title>Iniciar sesión</title>
   <style>
     :root{
-      --bg:#0f172a;        /* slate-900 */
+      --bg:#0f172a;
       --panel:#0b1220;
-      --ring:#334155;      /* slate-700 */
-      --text:#e5e7eb;      /* gray-200 */
-      --muted:#94a3b8;     /* slate-400 */
-      --accent:#3b82f6;    /* blue-500 */
-      --accent2:#06b6d4;   /* cyan-500 */
-      --danger:#ef4444;    /* red-500 */
-      --success:#22c55e;   /* green-500 */
+      --ring:#334155;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --accent:#3b82f6;  
+      --accent2:#06b6d4;
+      --danger:#ef4444; 
+      --success:#22c55e;  
     }
     *{box-sizing:border-box}
     body{
@@ -26,14 +26,14 @@
     }
     a{color:inherit; text-decoration:none}
     .container{width:100%; max-width:980px; margin:0 auto; padding:16px}
-    /* NAV */
+    
     .nav{position:sticky; top:0; z-index:10; border-bottom:1px solid var(--ring); background:rgba(2,6,23,.6); backdrop-filter:blur(8px)}
     .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
     .brand{display:flex; align-items:center; gap:10px; font-weight:700}
     .badge{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--accent2)); box-shadow:0 0 0 2px rgba(255,255,255,.05),0 8px 20px rgba(59,130,246,.18)}
     .link{border:1px solid var(--ring); padding:8px 12px; border-radius:10px; font-weight:600; background:var(--panel)}
     .link:hover{border-color:#475569}
-    /* LAYOUT */
+    
     main{display:grid; place-items:center; flex:1; padding:24px}
     .card{
       width:100%; max-width:460px; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
@@ -92,7 +92,7 @@
         <% } %>
       </div>
 
-      <!-- Submit clásico: el backend valida y decide (render/redirect) -->
+      
       <form action="/login" id="loginForm" method="POST" novalidate>
         <% if (typeof csrfToken !== 'undefined' && csrfToken) { %>
           <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -133,11 +133,11 @@ document.getElementById('loginForm').addEventListener('submit', async (e)=>{
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify(body),
-    credentials: 'include' // importante si el backend coloca el JWT en cookie
+    credentials: 'include'
   });
 
   if (r.ok) {
-    window.location.href = '/protected'; // 👈 redirect desde la vista
+    window.location.href = '/protected';
   } else {
     const data = await r.json().catch(()=>({}));
     const box = document.getElementById('err');
