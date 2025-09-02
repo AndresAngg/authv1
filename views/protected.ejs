@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body{margin:0;font-family:system-ui;background:#0f172a;color:#e5e7eb;min-height:100vh;display:flex;flex-direction:column}
+    header,footer{border-bottom:1px solid #334155;background:rgba(2,6,23,.6)}
+    header{position:sticky;top:0}
+    .wrap{max-width:900px;margin:0 auto;padding:16px;width:100%}
+    .btn{padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid #334155;background:#0b1220;color:#e5e7eb;cursor:pointer}
+    main{flex:1;display:grid;place-items:center}
+    .card{background:rgba(255,255,255,.04);border:1px solid #334155;border-radius:16px;padding:24px;width:100%;max-width:500px;text-align:center}
+    .muted{color:#94a3b8}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;">
+      <strong>Dashboard</strong>
+      <form action="/logout" method="POST" style="display:inline; margin:0;">
+  <% if (typeof csrfToken !== 'undefined' && csrfToken) { %>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <% } %>
+  <button type="submit" class="btn">Cerrar sesión</button>
+</form>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1>Zona protegida 🎉</h1>
+      <p class="muted">Bienvenido <%= user.user || "Usuario" %></p>
+      <p>Aquí puedes poner el contenido privado de tu app.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap muted">© Tu App</div>
+  </footer>
+</body>
+</html>
